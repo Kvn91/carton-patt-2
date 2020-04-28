@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  traefik:
+    image: traefik:1.7
+    command: --docker --docker.exposedbydefault=false
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  app:
+    build: .
+    labels:
+      - traefik.enable=true
+      - traefik.backend=app
+      - traefik.frontend.rule=Host:app.localhost
+    environment:
+      APACHE_DOCUMENT_ROOT: "public/"
+      PHP_EXTENSION_XDEBUG: "1"
+      PHP_INI_MEMORY_LIMIT: "1G"
+      # Symfony
+      APP_ENV: "dev"
+      APP_SECRET: "8d2a5c935d8ef1c0e2b751147382bc75"
+      DATABASE_URL: " "
+    volumes:
+      - ./src/app:/var/www/html:rw
