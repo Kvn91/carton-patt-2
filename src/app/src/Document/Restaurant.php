@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\Annotation\Groups as Groups;
  *
  * @author Kev
  *
- * @MongoDB\Document(collection="restaurants")
+ * @MongoDB\Document(repositoryClass="App\Repository\RestaurantRepository", collection="restaurants")
  */
 class Restaurant
 {
@@ -70,7 +70,7 @@ class Restaurant
 	/**
 	 * @return string
 	 */
-	public function getId(): string
+	public function getId()
 	{
 		return $this->id;
 	}
@@ -88,7 +88,7 @@ class Restaurant
 	/**
 	 * @return string
 	 */
-	public function getName(): string
+	public function getName()
 	{
 		return $this->name;
 	}
@@ -106,7 +106,7 @@ class Restaurant
 	/**
 	 * @return string
 	 */
-	public function getDescription(): string
+	public function getDescription()
 	{
 		return $this->description;
 	}
@@ -124,7 +124,7 @@ class Restaurant
 	/**
 	 * @return string
 	 */
-	public function getType(): string
+	public function getType()
 	{
 		return $this->type;
 	}
