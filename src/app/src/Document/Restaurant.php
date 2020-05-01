@@ -2,7 +2,7 @@
 
 namespace App\Document;
 
-
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -14,6 +14,7 @@ use Symfony\Component\Serializer\Annotation\Groups as Groups;
  * @author Kev
  *
  * @MongoDB\Document(repositoryClass="App\Repository\RestaurantRepository", collection="restaurants")
+ * @ApiResource
  */
 class Restaurant
 {
