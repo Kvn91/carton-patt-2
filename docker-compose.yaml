@@ -9,8 +9,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
-  app:
-    build: .
+  workspace:
+    image: thecodingmachine/php:7.4-v3-apache-node12
     labels:
       - traefik.enable=true
       - traefik.backend=app
@@ -19,9 +19,12 @@ services:
       APACHE_DOCUMENT_ROOT: "public/"
       PHP_EXTENSION_XDEBUG: "1"
       PHP_INI_MEMORY_LIMIT: "1G"
+      PHP_EXTENSION_MONGODB: 1
       # Symfony
       APP_ENV: "dev"
       APP_SECRET: "8d2a5c935d8ef1c0e2b751147382bc75"
-      DATABASE_URL: " "
+      MONGODB_URL: "mongodb+srv://$MONGODB_USER:$MONGODB_PASSWORD@cluster0-shkgh.gcp.mongodb.net/test?retryWrites=true&w=majority"
+      MONGODB_DB: "carton-patt-2"
+      CORS_ALLOW_ORIGIN: "$CORS_ALLOW_ORIGIN"
     volumes:
       - ./src/app:/var/www/html:rw
